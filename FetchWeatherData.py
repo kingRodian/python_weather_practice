@@ -14,6 +14,7 @@ class FetchWeatherData:
     DEFAULT_LON = "10.75"
 
     def get(lat=DEFAULT_LAT, lon=DEFAULT_LON):
+        # Do the request and return raw json
         vals = {"lat" : lat, "lon" : lon}
         data = urllib.parse.urlencode(vals)
         url = FetchWeatherData.API_URL + '?' + data

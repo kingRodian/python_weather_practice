@@ -4,7 +4,7 @@ from datetime import date, timedelta
 from FetchWeatherData import FetchWeatherData
 from JSONtoTimeSeries import JSONtoTimeSeries
 
-# We dont
+# We dont use this for anything atm
 LOGGER = logging.getLogger(__name__)
 logging.basicConfig()
 

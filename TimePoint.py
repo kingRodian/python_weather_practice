@@ -1,6 +1,6 @@
 class TimePoint:
     """
-    Holds a time and datapoints relating to the weather at that time.
+    Holds a datetime and datapoints relating to the weather at that time.
     """
 
     REPR_FORMAT = '{time} - {temp:>5} degrees celsius.'

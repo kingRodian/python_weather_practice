@@ -15,6 +15,7 @@ class TimeSeries:
         self.location = location
 
     def add_timepoint(self, timepoint):
+        # Add a timepoint to the approprate date-list
         day = timepoint.time.date()
         if day in self.timepoints:
             daylist = self.timepoints[day]
@@ -23,9 +24,11 @@ class TimeSeries:
             self.timepoints[day] = [timepoint]
         
     def get_timeseries(self):
+        # Return the whole dict
         return self.timepoints
 
     def get_timepoints(self, date):
+        # Return list for certain date
         return self.timepoints[date] if date in timepoints else []
 
     def str_timepoints_date(self, date):

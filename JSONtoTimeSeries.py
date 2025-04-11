@@ -5,8 +5,8 @@ import json
 
 class JSONtoTimeSeries:
     """
-    Converts JSON from locationforecast to a TimeSeries
-    class holding lists of TimePoints.
+    Converts JSON from locationforecast API to a TimeSeries
+    class holding a dict of lists of TimePoints.
 
     The data we want from the JSON is the properties.timeseries,
     which is a list of times and data. The data we want from these are
