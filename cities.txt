@@ -1,0 +1,59 @@
+oslo 59.92 10.75
+bergen 60.39 5.33
+stavanger 58.970 5.74
+trondheim 63.43 10.40
+drammen 59.75 10.20
+fredrikstad 59.21 10.93
+sarpsborg 59.28 11.10
+porsgrunn 59.14 9.66
+skien 59.21 9.61
+kristiansand 58.14 7.99
+tønsberg 59.27 10.41
+ålesund 62.47 6.15
+moss 59.44 10.66
+sandefjord 59.13 10.23
+arendal 58.46 8.77
+bodø 67.29 14.38
+tromsø 69.65 18.96
+#Hamar
+#Gjøvik
+#Larvik
+#Halden
+#Askøy
+#Jessheim
+#Kongsberg
+#Molde
+#Ski
+#Harstad
+#Lillehammer
+#Horten
+#Korsvik
+#Mo i Rana 
+#Tromsdalen
+#Kristiansund
+#Hønefoss
+#Alta
+#Elverum
+#Råholt
+#Askim
+#Osøyro
+#Leirvik
+#Grimstad
+#Narvik
+#Vennesla
+#Drøbak
+#Stjørdalshalsen
+#Nesoddtangen
+#Bryne 
+#Steinkjer
+#Kongsvinger
+#Knarrevik/Straume
+#Ålgård/Figgjo
+#Kopervik
+#Egersund
+#Mandal
+#Brumunddal
+#Ås
+#Søgne
+#Levanger
+#Førde

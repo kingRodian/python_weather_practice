@@ -1,4 +1,6 @@
 import logging
+import sys
+from getopt import getopt
 from datetime import date, timedelta
 
 from FetchWeatherData import FetchWeatherData
@@ -8,11 +10,18 @@ from JSONtoTimeSeries import JSONtoTimeSeries
 LOGGER = logging.getLogger(__name__)
 logging.basicConfig()
 
+
+
 # TODO: Add functionality to enter coords and date
 #       Save the entire dataset to a file and check before fetching
 #           in order to avoid lots of API calls
 
 def main():
+    # Parse options
+
+
+    
+
     data = FetchWeatherData.get()
     timeseries = JSONtoTimeSeries.create_timeseries(data)
     # For the moment we print for tomorrow

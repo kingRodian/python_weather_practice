@@ -1,6 +1,7 @@
-import urllib.parse
-import urllib.request
+from urllib import parse, request
+from urllib.error import HTTPError, URLError
 import logging
+import sys
 
 class FetchWeatherData:
     """
@@ -22,5 +23,12 @@ class FetchWeatherData:
         FetchWeatherData.LOGGER.debug('Sending request to {}\n'.format(url))
         req = urllib.request.Request(url, headers={'User-Agent' : 'Mozilla'})
 
-        with urllib.request.urlopen(req) as response:
+        try:
+            response = urllib.request.urlopen(req)
             return response.read()
+        except URLError as e:
+            logging.error('Could not connect to url: {}'.format(e.reason))
+            sys.exit(1)
+        except HTTPError as e:
+            logging.error('Could not retrieve response: {}'.format(e.reason))
+            sys.exit(1)

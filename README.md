@@ -1,7 +1,9 @@
 # python_weather_practice
 Fetching weather data for Oslo/Norway in Python as practice.
 
-Using locationforecast API from https://api.met.no/
+Initially using locationforecast API from https://api.met.no/,
+however in order to support searching up locations like cities we 
+probably need to use the Frost API.
 
 Usage: `python fetchweather.py`
 
