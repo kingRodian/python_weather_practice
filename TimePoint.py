@@ -1,8 +1,9 @@
 class TimePoint:
-    # There are lots of data-points we could store here, but we are really only interested in the details
-    # for instant.details, and only really a few of them. But we'll take all of the details just in case we want more later.
-    
-    REPR_FORMAT = 'Time: {time} - {temp:>5} degrees celsius.'
+    """
+    Holds a time and datapoints relating to the weather at that time.
+    """
+
+    REPR_FORMAT = '{time} - {temp:>5} degrees celsius.'
 
     def __init__(self, time, air_pressure_at_sea_level, air_temperature,
      cloud_area_fraction, relative_humidity, wind_from_direction, wind_speed):

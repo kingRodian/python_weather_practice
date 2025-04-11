@@ -3,17 +3,18 @@ from TimeSeries import TimeSeries
 from datetime import datetime
 import json
 
-
-# Example datetime str from the json
-# 2025-04-10T07:00:00Z
-
-# Note, json objects need "" for property names
 class JSONtoTimeSeries:
-    def __init__(self):
-        pass
+    """
+    Converts JSON from locationforecast to a TimeSeries
+    class holding lists of TimePoints.
 
-    def create_timeseries(self, jsontext):
-        timeseries = TimeSeries()
+    The data we want from the JSON is the properties.timeseries,
+    which is a list of times and data. The data we want from these are
+    time and data.instant.details which contains temp, humidity etc.
+    """
+
+    def create_timeseries(self, jsontext, location='Oslo'):
+        timeseries = TimeSeries(location)
         data = json.loads(jsontext)
         try:
             for val in data['properties']['timeseries']:

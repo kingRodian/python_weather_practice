@@ -14,12 +14,9 @@ def main():
     data = ''
     with open('examplejson.json', 'r') as f:
         data = f.read()
-    timeseries = json_to_time.create_timeseries(data)
+    timeseries = JSONtoTimeSeries().create_timeseries(data)
 
-    for time, series in timeseries.get_timeseries().items():
-        print('Series for date: {}'.format(time.date()))
-        for timepoint in series:
-            print(timepoint)
+    print(str(timeseries))
 
 
 main()

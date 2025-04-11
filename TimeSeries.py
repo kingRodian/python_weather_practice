@@ -8,12 +8,14 @@ class TimeSeries:
     Methods for adding timepoints etc
     """
 
-    def __init__(self):
-        self.timepoints = dict()
+    TOP_REPR_FMT = 'Temperatures for {location} {date}:\n'
 
+    def __init__(self, location):
+        self.timepoints = dict()
+        self.location = location
 
     def add_timepoint(self, timepoint):
-        day = datetime.combine(timepoint.time.date())
+        day = timepoint.time.date()
         if day in self.timepoints:
             daylist = self.timepoints[day]
             daylist.append(timepoint)
@@ -23,11 +25,20 @@ class TimeSeries:
     def get_timeseries(self):
         return self.timepoints
 
-    def get_timepoints(self, day):
-        return self.timepoints[day] if day in timepoints else []
+    def get_timepoints(self, date):
+        return self.timepoints[date] if date in timepoints else []
 
-    # Implement __repr__ to print the timeseries date by date
+    def str_timepoints_day(self, date):
+        # Return timepoints for a certain date as a printable string
+        output = self.TOP_REPR_FMT.format(location=self.location, date=date.isoformat())
+        for point in self.timepoints[date]:
+            output += str(point)
+            output += '\n'
+        return output
 
-
-
-
+    def __repr__(self):
+        # Print out the entire timeseries
+        output = ''
+        for date in sorted(self.timepoints.keys()):
+            output += self.str_timepoints_day(date) + '\n'
+        return output
