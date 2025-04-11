@@ -10,17 +10,18 @@ class LoadCities:
 
     def _load_file(self, filename):
         with open(filename, 'r') as f:
-            for line in f.readline():
+            for line in f:
+                line = line.strip()
                 # Ignore comments
                 if line[0] == '#':
                     continue
-                name, coords = self._parse_line(line)
-                self.cities[name] = coords
+                self._parse_line(line)
 
     def _parse_line(self, line):
         line = line.split()
         name = line[0]
-        coords = (line[1], line[2])
+        coord = (float(line[1]), float(line[2]))
+        self.cities[name] = coord
 
     def get_cities(self):
         return self.cities

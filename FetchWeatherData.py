@@ -1,4 +1,4 @@
-from urllib import parse, request
+import urllib.request, urllib.parse
 from urllib.error import HTTPError, URLError
 import logging
 import sys
@@ -11,12 +11,11 @@ class FetchWeatherData:
 
     LOGGER = logging.getLogger(__name__)
     API_URL = "https://api.met.no/weatherapi/locationforecast/2.0/compact"
-    DEFAULT_LAT = "59.92"
-    DEFAULT_LON = "10.75"
 
-    def get(lat=DEFAULT_LAT, lon=DEFAULT_LON):
+
+    def get(coord):
         # Do the request and return raw json
-        vals = {"lat" : lat, "lon" : lon}
+        vals = {"lat" : coord[0], "lon" : coord[1]}
         data = urllib.parse.urlencode(vals)
         url = FetchWeatherData.API_URL + '?' + data
 
