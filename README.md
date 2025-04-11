@@ -1,8 +1,8 @@
 # python_weather_practice
-Fetching weather data for Oslo/Norway in Python as practice.
+Fetching weather data for Oslo/Norway in Python as practice.  
 
-## usage: python fetchweather.py [options]  
-    options:
+ usage: python fetchweather.py [options]  
+>   options:
 > -c      lat,lon  - Provide weather data for the given coordinates.  
 > -n      cityname - Provide weather data for the given city, if the coords exist in cities.txt  
 > -h               - Presents this text  
