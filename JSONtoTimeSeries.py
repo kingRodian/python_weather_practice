@@ -13,7 +13,7 @@ class JSONtoTimeSeries:
     time and data.instant.details which contains temp, humidity etc.
     """
 
-    def create_timeseries(self, jsontext, location='Oslo'):
+    def create_timeseries(jsontext, location='Oslo'):
         timeseries = TimeSeries(location)
         data = json.loads(jsontext)
         try:

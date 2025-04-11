@@ -3,7 +3,7 @@ Fetching weather data for Oslo/Norway in Python as practice.
 
 Using locationforecast API from https://api.met.no/
 
-Usage: `python fetch-weather`
+Usage: `python fetchweather`
 
 Will start out simple and CLI only, showing only temperatures,
 but will eventually be adding CLI-flags, files for storing coordinates 

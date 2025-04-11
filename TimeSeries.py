@@ -28,7 +28,7 @@ class TimeSeries:
     def get_timepoints(self, date):
         return self.timepoints[date] if date in timepoints else []
 
-    def str_timepoints_day(self, date):
+    def str_timepoints_date(self, date):
         # Return timepoints for a certain date as a printable string
         output = self.TOP_REPR_FMT.format(location=self.location, date=date.isoformat())
         for point in self.timepoints[date]:
@@ -36,9 +36,12 @@ class TimeSeries:
             output += '\n'
         return output
 
+    def print_date(self, date):
+        print(self.str_timepoints_date(date))
+
     def __repr__(self):
         # Print out the entire timeseries
         output = ''
         for date in sorted(self.timepoints.keys()):
-            output += self.str_timepoints_day(date) + '\n'
+            output += self.str_timepoints_date(date) + '\n'
         return output

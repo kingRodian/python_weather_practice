@@ -13,12 +13,12 @@ class FetchWeatherData:
     DEFAULT_LAT = "59.92"
     DEFAULT_LON = "10.75"
 
-    def get(self, lat=DEFAULT_LAT, lon=DEFAULT_LON):
+    def get(lat=DEFAULT_LAT, lon=DEFAULT_LON):
         vals = {"lat" : lat, "lon" : lon}
         data = urllib.parse.urlencode(vals)
-        url = self.API_URL + '?' + data
+        url = FetchWeatherData.API_URL + '?' + data
 
-        self.LOGGER.debug('Sending request to {}\n'.format(url))
+        FetchWeatherData.LOGGER.debug('Sending request to {}\n'.format(url))
         req = urllib.request.Request(url, headers={'User-Agent' : 'Mozilla'})
 
         with urllib.request.urlopen(req) as response:
