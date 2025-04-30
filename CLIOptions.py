@@ -7,18 +7,21 @@ from getopt import getopt
 class CLIOptions:
     LOGGER = logging.getLogger(__name__)
     # Options for getopt cli flags
-    SHORT_OPTIONS = 'c:n:h'
+    SHORT_OPTIONS = 'c:n:d:h'
     HELP_TEXT = '''
 usage: python fetchweather.py [options]  
     options:
         -c      lat,lon  - Provide weather data for the given coordinates.
         -n      cityname - Provide weather data for the given city, if the coords exist in cities.txt
+        -d      days     - Specify the amount of days to show data for. Default is 1, max is 9.
         -h               - Presents this text
     If both coord and city are given, the program will only show the data for the coord.
     If no options are given the program will default to showing data for Oslo 
     for the following day.
 '''
     DEFAULT_CITY = 'oslo'
+    MIN_DAYS = 1
+    MAX_DAYS = 9
     # Regex to match coordinates like 39.2,20 and capture them
     COORD_REGEX = re.compile(r'(\d+(?:.?\d+)),(\d+(?:.?\d+))')
     # Coords < -180 or > 180 are nonsense
@@ -28,6 +31,7 @@ usage: python fetchweather.py [options]
     def __init__(self, argv):
         self.city = None
         self.coord = None
+        self.days = 1
         # First arg is program name, so ignore it
         self.parse_opts(argv[1:])
         # Default option if none are provided
@@ -43,6 +47,8 @@ usage: python fetchweather.py [options]
             sys.exit(2)
 
         for opt, arg in opts:
+            if opt == '-d':
+                self.days = self.parse_days(arg)
             if opt == '-c':
                 self.coord = self.parse_coord(arg)
             elif opt == '-n':
@@ -51,6 +57,18 @@ usage: python fetchweather.py [options]
                 print(CLIOptions.HELP_TEXT)
                 sys.exit(0)
         
+    def parse_days(self, days):
+        try:
+            days = int(days)
+            if days < CLIOptions.MIN_DAYS or days > CLIOptions.MAX_DAYS:
+                CLIOptions.LOGGER.error('Days not in the correct range <1,9>: {}'.format(days))
+                sys.exit(1)
+            return days
+        except ValueError as e:
+            CLIOptions.LOGGER.error('Days not in the right format: {}'.format(e.reason))
+            sys.exit(1)
+
+
     def parse_coord(self, coords):
         m = CLIOptions.COORD_REGEX.match(coords)
         try:

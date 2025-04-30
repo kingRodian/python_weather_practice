@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime
+import datetime
 
 class TimeSeries:
     """
@@ -29,7 +29,7 @@ class TimeSeries:
 
     def get_timepoints(self, date):
         # Return list for certain date
-        return self.timepoints[date] if date in timepoints else []
+        return self.timepoints[date] if date in self.timepoints else []
 
     def str_timepoints_date(self, date):
         # Return timepoints for a certain date as a printable string
@@ -40,7 +40,17 @@ class TimeSeries:
         return output
 
     def print_date(self, date):
-        print(self.str_timepoints_date(date))
+        if date in self.timepoints:
+            print(self.str_timepoints_date(date))
+        else:
+            print("No data for date: {}".format(date.isoformat()))
+
+    def print_days(self, days):
+        today = datetime.date.today()
+        curdate = today
+        for day in range(days):
+            curdate = today + datetime.timedelta(days=day)
+            self.print_date(curdate)
 
     def __repr__(self):
         # Print out the entire timeseries
