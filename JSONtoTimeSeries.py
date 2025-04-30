@@ -11,6 +11,7 @@ class JSONtoTimeSeries:
     The data we want from the JSON is the properties.timeseries,
     which is a list of times and data. The data we want from these are
     time and data.instant.details which contains temp, humidity etc.
+    We also want the precipitation for that hour, which is not in the instant, but next 1 hour
     """
 
     def create_timeseries(jsontext, location):
@@ -20,7 +21,8 @@ class JSONtoTimeSeries:
             for val in data['properties']['timeseries']:
                 details = val['data']['instant']['details']
                 time = datetime.fromisoformat(val['time'])
-                timepoint = TimePoint(time=time, **details)
+                precipitation = val['data']['next_1_hours']['details']['precipitation_amount']
+                timepoint = TimePoint(time=time, precipitation=precipitation, **details)
                 timeseries.add_timepoint(timepoint)
                 
         except Exception as e:

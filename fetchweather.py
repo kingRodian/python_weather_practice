@@ -44,7 +44,7 @@ def main():
 
     data = FetchWeatherData.get(coord)
     timeseries = JSONtoTimeSeries.create_timeseries(data, location)
-    timeseries.print_days(opts.days, opts.avgs)
+    timeseries.print_days(opts.days, opts.precip, opts.avgs)
 
 
 main()
