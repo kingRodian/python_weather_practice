@@ -14,7 +14,7 @@ logging.basicConfig()
 
 
 
-# TODO: Add functionality to enter coords and date
+# TODO:
 #       Save the entire dataset to a file and check before fetching
 #           in order to avoid lots of API calls
 
@@ -44,9 +44,7 @@ def main():
 
     data = FetchWeatherData.get(coord)
     timeseries = JSONtoTimeSeries.create_timeseries(data, location)
-    # For the moment we print for tomorrow
-    tomorrow = date.today() + timedelta(days=1)
-    timeseries.print_date(tomorrow)
+    timeseries.print_days(opts.days)
 
 
 main()
