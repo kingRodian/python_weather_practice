@@ -38,7 +38,7 @@ class TimeSeries:
         # Return list for certain date
         return self.timepoints[date] if date in self.timepoints else []
 
-    def str_timepoints_date(self, date, precipitation=False):
+    def str_timepoints_date(self, date, precipitation=False, wind=False):
         # Return timepoints for a certain date as a printable string
         output = self.TOP_REPR_FMT.format(location=self.location, date=date.isoformat())
         tot_avg = 0
@@ -48,6 +48,8 @@ class TimeSeries:
             output += str(point)
             if precipitation:
                 output += ' Rain: {} mm.'.format(point.precipitation)
+            if wind:
+                output += ' Wind: {} m/s from {}.'.format(point.wind_speed, point.wind_from_direction)
             output += '\n'
         tot_avg = tot_avg/ len(points)
         output += 'Average: {:.2f}.\n'.format(tot_avg)
@@ -80,7 +82,7 @@ class TimeSeries:
                 avgs[i] = sum(val) / len(val)
         return avgs, tot_avg / len(points)
 
-    def print_days(self, days, precipitation=False, averages=False):
+    def print_days(self, days, precipitation=False, wind=False, averages=False):
         today = datetime.date.today()
         curdate = today
         for day in range(days):
@@ -89,7 +91,7 @@ class TimeSeries:
                 if averages:
                     print(self.str_avgs(curdate))
                 else:
-                    print(self.str_timepoints_date(curdate, precipitation))
+                    print(self.str_timepoints_date(curdate, precipitation, wind))
             else:
                 print("No data for date: {}".format(curdate.isoformat()))
 

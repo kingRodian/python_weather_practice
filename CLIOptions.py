@@ -7,7 +7,7 @@ from getopt import getopt
 class CLIOptions:
     LOGGER = logging.getLogger(__name__)
     # Options for getopt cli flags
-    SHORT_OPTIONS = 'apc:n:d:h'
+    SHORT_OPTIONS = 'apwc:n:d:h'
     HELP_TEXT = '''
 usage: python fetchweather.py [options]  
     options     arguments
@@ -16,10 +16,11 @@ usage: python fetchweather.py [options]
         -d      days     - Specify the amount of days to show data for. Default is 1, max is 9.
         -a               - Show averages for 00-08, 08-12, 12-18 and 18-00 rather than per hour.
         -p               - Shows precipitation for that hour. Does nothing with -a flag.
+        -w               - Shows windspeed and origin of wind. Does nothing with -a flag.
         -h               - Presents this text
     If both coord and city are given, the program will only show the data for the coord.
     If no options are given the program will default to showing data for Oslo 
-    for the following day.
+    for the current day.
 '''
     DEFAULT_CITY = 'oslo'
     MIN_DAYS = 1
@@ -36,6 +37,7 @@ usage: python fetchweather.py [options]
         self.days = 1
         self.avgs = False
         self.precip = False
+        self.wind = False
         # First arg is program name, so ignore it
         self.parse_opts(argv[1:])
         # Default option if none are provided
@@ -53,6 +55,8 @@ usage: python fetchweather.py [options]
         for opt, arg in opts:
             if opt == '-a':
                 self.avgs = True
+            if opt == '-w':
+                self.wind = True
             if opt == '-p':
                 self.precip = True
             if opt == '-d':
