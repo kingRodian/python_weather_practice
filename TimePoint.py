@@ -3,7 +3,7 @@ class TimePoint:
     Holds a datetime and datapoints relating to the weather at that time.
     """
 
-    REPR_FORMAT = '{time} - {temp:>5} degrees celsius.'
+    REPR_FORMAT = '{time} - {temp:>5} deg celsius.'
 
     def __init__(self, time, air_pressure_at_sea_level, air_temperature,
      cloud_area_fraction, relative_humidity, wind_from_direction, wind_speed):
