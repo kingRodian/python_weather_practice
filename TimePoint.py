@@ -5,7 +5,7 @@ class TimePoint:
 
     REPR_FORMAT = '{time} - {temp:>5} deg celsius.'
 
-    def __init__(self, time, air_pressure_at_sea_level, air_temperature,
+    def __init__(self, time, precipitation, air_pressure_at_sea_level, air_temperature,
      cloud_area_fraction, relative_humidity, wind_from_direction, wind_speed):
         self.time = time
         self.air_pressure = air_pressure_at_sea_level
@@ -14,6 +14,7 @@ class TimePoint:
         self.relative_humidity = relative_humidity
         self.wind_from_direction = wind_from_direction
         self.wind_speed = wind_speed
+        self.precipitation = precipitation
 
 
     def time(self):
